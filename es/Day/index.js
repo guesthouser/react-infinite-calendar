@@ -88,21 +88,21 @@ var Day = function (_PureComponent) {
   Day.prototype.render = function render() {
     var _classNames;
 
-    var _props2 = this.props,
-        className = _props2.className,
-        currentYear = _props2.currentYear,
-        date = _props2.date,
-        day = _props2.day,
-        handlers = _props2.handlers,
-        isDisabled = _props2.isDisabled,
-        isHighlighted = _props2.isHighlighted,
-        isToday = _props2.isToday,
-        isSelected = _props2.isSelected,
-        monthShort = _props2.monthShort,
-        _props2$theme = _props2.theme,
-        selectionColor = _props2$theme.selectionColor,
-        todayColor = _props2$theme.todayColor,
-        year = _props2.year;
+    var _props3 = this.props,
+        className = _props3.className,
+        currentYear = _props3.currentYear,
+        date = _props3.date,
+        day = _props3.day,
+        handlers = _props3.handlers,
+        isDisabled = _props3.isDisabled,
+        isHighlighted = _props3.isHighlighted,
+        isToday = _props3.isToday,
+        isSelected = _props3.isSelected,
+        monthShort = _props3.monthShort,
+        _props3$theme = _props3.theme,
+        selectionColor = _props3$theme.selectionColor,
+        todayColor = _props3$theme.todayColor,
+        year = _props3.year;
 
     var color = void 0;
 
@@ -112,13 +112,36 @@ var Day = function (_PureComponent) {
       color = todayColor;
     }
 
+    var day_price = 0;
+    var is_available = false;
+    var _props2 = this.props;
+
+    if (_props2.hasOwnProperty("locale") && _props2.locale.hasOwnProperty("pricing") && _props2.locale.pricing.hasOwnProperty(date)) {
+
+      var data = _props2.locale.pricing[date];
+      if (data.is_available == 1) {
+        is_available = true;
+        day_price = _props2.locale.currency + data.price;
+      }
+    } else {
+      if (_props2.hasOwnProperty("locale") && _props2.locale.hasOwnProperty("defaultPricing")) {
+        if (_props2.locale.defaultPricing.hasOwnProperty("price")) {
+          day_price = _props2.locale.defaultPricing.price;
+        }
+        if (_props2.locale.defaultPricing.hasOwnProperty("is_available")) {
+          is_available = _props2.locale.defaultPricing.is_available;
+        }
+      }
+    }
+
     return React.createElement(
       'li',
       _extends({
         style: color ? { color: color } : null,
-        className: classNames(styles.root, (_classNames = {}, _classNames[styles.today] = isToday, _classNames[styles.highlighted] = isHighlighted, _classNames[styles.selected] = isSelected, _classNames[styles.disabled] = isDisabled, _classNames[styles.enabled] = !isDisabled, _classNames), className),
+        className: classNames(styles.root, (_classNames = {}, _classNames[styles.today] = isToday, _classNames[styles.highlighted] = isHighlighted, _classNames[styles.selected] = isSelected, _classNames[styles.disabled] = isDisabled, _classNames[styles.enabled] = !isDisabled, _classNames), className) + (!is_available ? " not_available_1" : ""),
         onClick: this.handleClick,
-        'data-date': date
+        'data-date': date,
+        'data-pricing': day_price
       }, handlers),
       day === 1 && React.createElement(
         'span',
