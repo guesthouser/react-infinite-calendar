@@ -8,6 +8,9 @@ import {
   getWeek,
   getWeeksInMonth,
   animate,
+  getWeekOfMonthFromDate,
+  getWeeksInMonthIncludingPartial,
+  getWeeksBetweenMonthIncludingPartial
 } from '../utils';
 import parse from 'date-fns/parse';
 import startOfMonth from 'date-fns/start_of_month';
@@ -58,9 +61,16 @@ export default class MonthList extends Component {
     if (!this.monthHeights[index]) {
       let {locale: {weekStartsOn}, months, rowHeight} = this.props;
       let {month, year} = months[index];
+
+      //old method
       let weeks = getWeeksInMonth(month, year, weekStartsOn, index === months.length - 1);
       let height = weeks * rowHeight;
-      this.monthHeights[index] = height;
+
+      // new method
+      let totalWeeks =  getWeeksInMonthIncludingPartial(month, year);
+      let totalheight = totalWeeks * rowHeight;
+
+      this.monthHeights[index] = totalheight;
     }
 
     return this.monthHeights[index];
@@ -82,6 +92,15 @@ export default class MonthList extends Component {
     const {min, rowHeight, locale: {weekStartsOn}, height} = this.props;
     const weeks = getWeek(startOfMonth(min), parse(date), weekStartsOn);
 
+    // new method
+    var offsetDate=  new Date(date);
+    var weekOfMonth = getWeekOfMonthFromDate(offsetDate);
+    var totalWeeks = getWeeksInMonthIncludingPartial(offsetDate.getMonth(), offsetDate.getFullYear());
+    var totalWeeksAll =  getWeeksBetweenMonthIncludingPartial(min, offsetDate);
+
+    return (totalWeeksAll* rowHeight) + (weekOfMonth * rowHeight)- (height)/2;
+
+    // old method
     return weeks * rowHeight - (height - rowHeight/2) / 2;
   }
 
