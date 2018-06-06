@@ -139,6 +139,14 @@ Yes please! Feature requests / pull requests are welcome. [Learn how to contribu
 
 Have a suggestion or just want to say hello? Come chat on [Gitter](https://gitter.im/clauderic/react-infinite-calendar)!
 
+GUESTHOUSER:
+------------
+If you face Issues while building it try following things.
+1. Install Phantomjs manual if its getting failed at installing it.
+2. Goto node_modules/extract-text-webpack-plugin  and run  npm install.
+3. Delete  node_modules/html-webpack-plugin and then npm install html-webpack-plugin and again do only step 2 if still no build.
+
+
 License
 ---------
 *react-infinite-calendar* is available under the MIT License.
