@@ -10,7 +10,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import VirtualList from 'react-tiny-virtual-list';
 import classNames from 'classnames';
-import { emptyFn, getMonth, getWeek, getWeeksInMonth, animate } from '../utils';
+import { emptyFn, getMonth, getWeek, getWeeksInMonth, animate, getWeekOfMonthFromDate, getWeeksInMonthIncludingPartial, getWeeksBetweenMonthIncludingPartial } from '../utils';
 import parse from 'date-fns/parse';
 import startOfMonth from 'date-fns/start_of_month';
 import Month from '../Month';
@@ -60,9 +60,16 @@ var MonthList = function (_Component) {
             month = _months$index.month,
             year = _months$index.year;
 
+        //old method
+
         var weeks = getWeeksInMonth(month, year, weekStartsOn, index === months.length - 1);
         var height = weeks * rowHeight;
-        _this.monthHeights[index] = height;
+
+        // new method
+        var totalWeeks = getWeeksInMonthIncludingPartial(month, year);
+        var totalheight = totalWeeks * rowHeight;
+
+        _this.monthHeights[index] = totalheight;
       }
 
       return _this.monthHeights[index];
@@ -180,6 +187,15 @@ var MonthList = function (_Component) {
 
     var weeks = getWeek(startOfMonth(min), parse(date), weekStartsOn);
 
+    // new method
+    var offsetDate = new Date(date);
+    var weekOfMonth = getWeekOfMonthFromDate(offsetDate);
+    var totalWeeks = getWeeksInMonthIncludingPartial(offsetDate.getMonth(), offsetDate.getFullYear());
+    var totalWeeksAll = getWeeksBetweenMonthIncludingPartial(min, offsetDate);
+
+    return totalWeeksAll * rowHeight + weekOfMonth * rowHeight - height / 2;
+
+    // old method
     return weeks * rowHeight - (height - rowHeight / 2) / 2;
   };
 

@@ -436,17 +436,20 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_date_fns_start_of_day__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_date_fns_start_of_day___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_date_fns_start_of_day__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__animate__ = __webpack_require__(70);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_9__animate__["a"]; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return keyCodes; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_9__animate__["a"]; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return keyCodes; });
 /* harmony export (immutable) */ __webpack_exports__["f"] = getMonth;
-/* harmony export (immutable) */ __webpack_exports__["i"] = getWeek;
+/* harmony export (immutable) */ __webpack_exports__["j"] = getWeek;
 /* harmony export (immutable) */ __webpack_exports__["g"] = getWeeksInMonth;
+/* harmony export (immutable) */ __webpack_exports__["k"] = getWeekOfMonthFromDate;
+/* harmony export (immutable) */ __webpack_exports__["h"] = getWeeksInMonthIncludingPartial;
+/* harmony export (immutable) */ __webpack_exports__["l"] = getWeeksBetweenMonthIncludingPartial;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return ScrollSpeed; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return scrollbarSize; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return scrollbarSize; });
 /* harmony export (immutable) */ __webpack_exports__["b"] = emptyFn;
-/* harmony export (immutable) */ __webpack_exports__["m"] = sanitizeDate;
-/* harmony export (immutable) */ __webpack_exports__["j"] = getDateString;
-/* harmony export (immutable) */ __webpack_exports__["l"] = getMonthsForYear;
+/* harmony export (immutable) */ __webpack_exports__["p"] = sanitizeDate;
+/* harmony export (immutable) */ __webpack_exports__["m"] = getDateString;
+/* harmony export (immutable) */ __webpack_exports__["o"] = getMonthsForYear;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return withImmutableProps; });
 /* harmony export (immutable) */ __webpack_exports__["d"] = debounce;
 /* harmony export (immutable) */ __webpack_exports__["e"] = range;
@@ -547,6 +550,73 @@ function getWeeksInMonth(month) {
   }
 
   return rowCount;
+}
+
+function getWeekOfMonthFromDate(date) {
+  var date_no = date.getDate();
+  var day = date.getDay();
+
+  return Math.ceil((date_no - 1 - day) / 7) + 1;
+}
+
+function getWeeksInMonthIncludingPartial(month, year) {
+  // month_number is in the range 0..11
+  var firstOfMonth = new Date(year, month, 1);
+  var lastOfMonth = new Date(year, month + 1, 0);
+
+  var used = firstOfMonth.getDay() + lastOfMonth.getDate();
+
+  // adding one to get extra empty row
+  return Math.ceil(used / 7) + 1;
+}
+
+function getWeeksBetweenMonthIncludingPartial(date1, date2) {
+  // month_number is in the range 0..11
+
+  var month1 = date1.getMonth();
+  var year1 = date1.getFullYear();
+
+  var month2 = date2.getMonth();
+  var year2 = date2.getFullYear();
+
+  var first = new Date(year1, month1, 1);
+  var totalWeeks = 0;
+  var iterate = true;
+
+  if (year2 < year1) {
+    return 0;
+  }
+  if (month2 == 0) {
+    year2 = newyear - 1;
+    month2 = 11;
+  } else {
+    month2 = month2 - 1;
+  }
+
+  while (iterate) {
+    totalWeeks += getWeeksInMonthIncludingPartial(month1, year1);
+
+    month1 = first.getMonth() + 1;
+    if (month1 == 12) {
+      month1 = 0;
+      year1 = first.getFullYear() + 1;
+    }
+
+    first = new Date(year1, month1, 1);
+
+    if (year1 <= year2) {
+      if (year1 == year2) {
+        if (month1 > month2) {
+          iterate = false;
+        }
+      }
+    } else {
+      iterate = false;
+    }
+  }
+
+  // adding one to get extra row
+  return totalWeeks + 1;
 }
 
 /**
@@ -2545,7 +2615,7 @@ var withDateSelection = __WEBPACK_IMPORTED_MODULE_3_recompose_compose___default(
       setScrollDate = _ref3.setScrollDate,
       props = _objectWithoutProperties(_ref3, ['onSelect', 'setScrollDate']);
 
-  var selected = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__utils__["m" /* sanitizeDate */])(props.selected, props);
+  var selected = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__utils__["p" /* sanitizeDate */])(props.selected, props);
 
   return {
     passThrough: {
@@ -4577,24 +4647,24 @@ function handleKeyDown(e, props) {
   var highlightedDate = getInitialDate(props);
   var delta = 0;
 
-  if ([__WEBPACK_IMPORTED_MODULE_8__utils__["n" /* keyCodes */].left, __WEBPACK_IMPORTED_MODULE_8__utils__["n" /* keyCodes */].up, __WEBPACK_IMPORTED_MODULE_8__utils__["n" /* keyCodes */].right, __WEBPACK_IMPORTED_MODULE_8__utils__["n" /* keyCodes */].down].indexOf(e.keyCode) > -1 && typeof e.preventDefault === 'function') {
+  if ([__WEBPACK_IMPORTED_MODULE_8__utils__["q" /* keyCodes */].left, __WEBPACK_IMPORTED_MODULE_8__utils__["q" /* keyCodes */].up, __WEBPACK_IMPORTED_MODULE_8__utils__["q" /* keyCodes */].right, __WEBPACK_IMPORTED_MODULE_8__utils__["q" /* keyCodes */].down].indexOf(e.keyCode) > -1 && typeof e.preventDefault === 'function') {
     e.preventDefault();
   }
 
   switch (e.keyCode) {
-    case __WEBPACK_IMPORTED_MODULE_8__utils__["n" /* keyCodes */].enter:
+    case __WEBPACK_IMPORTED_MODULE_8__utils__["q" /* keyCodes */].enter:
       onClick && onClick(highlightedDate);
       return;
-    case __WEBPACK_IMPORTED_MODULE_8__utils__["n" /* keyCodes */].left:
+    case __WEBPACK_IMPORTED_MODULE_8__utils__["q" /* keyCodes */].left:
       delta = -1;
       break;
-    case __WEBPACK_IMPORTED_MODULE_8__utils__["n" /* keyCodes */].right:
+    case __WEBPACK_IMPORTED_MODULE_8__utils__["q" /* keyCodes */].right:
       delta = +1;
       break;
-    case __WEBPACK_IMPORTED_MODULE_8__utils__["n" /* keyCodes */].down:
+    case __WEBPACK_IMPORTED_MODULE_8__utils__["q" /* keyCodes */].down:
       delta = +7;
       break;
-    case __WEBPACK_IMPORTED_MODULE_8__utils__["n" /* keyCodes */].up:
+    case __WEBPACK_IMPORTED_MODULE_8__utils__["q" /* keyCodes */].up:
       delta = -7;
       break;
     default:
@@ -4711,7 +4781,7 @@ var withMultipleDates = __WEBPACK_IMPORTED_MODULE_3_recompose_compose___default(
       }
     },
     selected: props.selected.filter(function (date) {
-      return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__utils__["m" /* sanitizeDate */])(date, props);
+      return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_5__utils__["p" /* sanitizeDate */])(date, props);
     }).map(function (date) {
       return __WEBPACK_IMPORTED_MODULE_7_date_fns_format___default()(date, 'YYYY-MM-DD');
     })
@@ -5698,7 +5768,7 @@ var Month = function (_PureComponent) {
       for (var k = 0, _len = row.length; k < _len; k++) {
         day = row[k];
 
-        date = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__utils__["j" /* getDateString */])(year, month, day);
+        date = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__utils__["m" /* getDateString */])(year, month, day);
         isToday = date === _today;
 
         isDisabled = minDate && date < _minDate || maxDate && date > _maxDate || disabledDays && disabledDays.length && disabledDays.indexOf(dow) !== -1 || disabledDates && disabledDates.length && disabledDates.indexOf(date) !== -1;
@@ -5898,9 +5968,16 @@ var MonthList = (_temp2 = _class = function (_Component) {
             month = _months$index.month,
             year = _months$index.year;
 
+        //old method
+
         var weeks = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__utils__["g" /* getWeeksInMonth */])(month, year, weekStartsOn, index === months.length - 1);
         var height = weeks * rowHeight;
-        _this.monthHeights[index] = height;
+
+        // new method
+        var totalWeeks = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__utils__["h" /* getWeeksInMonthIncludingPartial */])(month, year);
+        var totalheight = totalWeeks * rowHeight;
+
+        _this.monthHeights[index] = totalheight;
       }
 
       return _this.monthHeights[index];
@@ -5932,7 +6009,7 @@ var MonthList = (_temp2 = _class = function (_Component) {
 
       if (shouldAnimate) {
         /* eslint-disable sort-keys */
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__utils__["h" /* animate */])({
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__utils__["i" /* animate */])({
           fromValue: _this.scrollEl.scrollTop,
           toValue: scrollTop,
           onUpdate: function onUpdate(scrollTop, callback) {
@@ -5994,7 +6071,7 @@ var MonthList = (_temp2 = _class = function (_Component) {
       }, passThrough.Month, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 141
+          lineNumber: 160
         },
         __self: _this3
       }));
@@ -6022,8 +6099,17 @@ var MonthList = (_temp2 = _class = function (_Component) {
         weekStartsOn = _props.locale.weekStartsOn,
         height = _props.height;
 
-    var weeks = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__utils__["i" /* getWeek */])(__WEBPACK_IMPORTED_MODULE_6_date_fns_start_of_month___default()(min), __WEBPACK_IMPORTED_MODULE_5_date_fns_parse___default()(date), weekStartsOn);
+    var weeks = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__utils__["j" /* getWeek */])(__WEBPACK_IMPORTED_MODULE_6_date_fns_start_of_month___default()(min), __WEBPACK_IMPORTED_MODULE_5_date_fns_parse___default()(date), weekStartsOn);
 
+    // new method
+    var offsetDate = new Date(date);
+    var weekOfMonth = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__utils__["k" /* getWeekOfMonthFromDate */])(offsetDate);
+    var totalWeeks = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__utils__["h" /* getWeeksInMonthIncludingPartial */])(offsetDate.getMonth(), offsetDate.getFullYear());
+    var totalWeeksAll = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__utils__["l" /* getWeeksBetweenMonthIncludingPartial */])(min, offsetDate);
+
+    return totalWeeksAll * rowHeight + weekOfMonth * rowHeight - height / 2;
+
+    // old method
     return weeks * rowHeight - (height - rowHeight / 2) / 2;
   };
 
@@ -6056,7 +6142,7 @@ var MonthList = (_temp2 = _class = function (_Component) {
       overscanCount: overscanMonthCount,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 177
+        lineNumber: 196
       },
       __self: this
     });
@@ -6261,7 +6347,7 @@ var Weekdays = (_temp = _class = function (_PureComponent) {
         style: {
           backgroundColor: theme.weekdayColor,
           color: theme.textColor.active,
-          paddingRight: __WEBPACK_IMPORTED_MODULE_2__utils__["k" /* scrollbarSize */]
+          paddingRight: __WEBPACK_IMPORTED_MODULE_2__utils__["n" /* scrollbarSize */]
         },
         'aria-hidden': true,
         __source: {
@@ -6392,7 +6478,7 @@ var Years = (_temp = _class = function (_Component) {
         minDate = _props2.minDate,
         maxDate = _props2.maxDate;
 
-    var months = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__utils__["l" /* getMonthsForYear */])(year, selected.getDate());
+    var months = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__utils__["o" /* getMonthsForYear */])(year, selected.getDate());
 
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'ol',

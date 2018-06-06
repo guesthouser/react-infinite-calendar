@@ -97,6 +97,73 @@ export function getWeeksInMonth(month) {
   return rowCount;
 }
 
+export function getWeekOfMonthFromDate(date) {
+  var date_no = date.getDate();
+  var day = date.getDay();
+
+  return Math.ceil((date_no - 1 - day) / 7) + 1;
+}
+
+export function getWeeksInMonthIncludingPartial(month, year) {
+  // month_number is in the range 0..11
+  var firstOfMonth = new Date(year, month, 1);
+  var lastOfMonth = new Date(year, month + 1, 0);
+
+  var used = firstOfMonth.getDay() + lastOfMonth.getDate();
+
+  // adding one to get extra empty row
+  return Math.ceil(used / 7) + 1;
+}
+
+export function getWeeksBetweenMonthIncludingPartial(date1, date2) {
+  // month_number is in the range 0..11
+
+  var month1 = date1.getMonth();
+  var year1 = date1.getFullYear();
+
+  var month2 = date2.getMonth();
+  var year2 = date2.getFullYear();
+
+  var first = new Date(year1, month1, 1);
+  var totalWeeks = 0;
+  var iterate = true;
+
+  if (year2 < year1) {
+    return 0;
+  }
+  if (month2 == 0) {
+    year2 = newyear - 1;
+    month2 = 11;
+  } else {
+    month2 = month2 - 1;
+  }
+
+  while (iterate) {
+    totalWeeks += getWeeksInMonthIncludingPartial(month1, year1);
+
+    month1 = first.getMonth() + 1;
+    if (month1 == 12) {
+      month1 = 0;
+      year1 = first.getFullYear() + 1;
+    }
+
+    first = new Date(year1, month1, 1);
+
+    if (year1 <= year2) {
+      if (year1 == year2) {
+        if (month1 > month2) {
+          iterate = false;
+        }
+      }
+    } else {
+      iterate = false;
+    }
+  }
+
+  // adding one to get extra row
+  return totalWeeks + 1;
+}
+
 /**
  * Helper to find out what day the week ends on given the localized start of the week
  * @param {Number} weekStartsOn - the index of the first day of the week (from 0 to 6)
