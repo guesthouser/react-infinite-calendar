@@ -145,6 +145,7 @@ If you face Issues while building it try following things.
 1. Install Phantomjs manual if its getting failed at installing it.
 2. Goto node_modules/extract-text-webpack-plugin  and run  npm install.
 3. Delete  node_modules/html-webpack-plugin and then npm install html-webpack-plugin and again do only step 2 if still no build.
+4. As of now Css is not compiling properly,so untill it got figure out ,dnt not commit style.css
 
 
 License
