@@ -66,6 +66,30 @@ export default class Day extends PureComponent {
       color = todayColor;
     }
 
+    var day_price =0;
+    var is_available=false;
+    let _props2 = this.props;
+
+    if(_props2.hasOwnProperty("locale") && _props2.locale.hasOwnProperty("pricing") && _props2.locale.pricing.hasOwnProperty(date)){
+
+      var data = _props2.locale.pricing[date];
+        if(data.is_available == 1){
+          is_available= true;
+          day_price= _props2.locale.currency + data.price;
+        }
+    }
+    else{
+      if(_props2.hasOwnProperty("locale") && _props2.locale.hasOwnProperty("defaultPricing")){
+        if(_props2.locale.defaultPricing.hasOwnProperty("price")){
+          day_price = _props2.locale.defaultPricing.price;
+        }
+        if(_props2.locale.defaultPricing.hasOwnProperty("is_available")){
+          is_available = _props2.locale.defaultPricing.is_available;
+        }
+      }
+      
+    }
+
     return (
       <li
         style={color ? {color} : null}
@@ -75,9 +99,10 @@ export default class Day extends PureComponent {
           [styles.selected]: isSelected,
           [styles.disabled]: isDisabled,
           [styles.enabled]: !isDisabled,
-        }, className)}
+         }, className) + ((!is_available) ? " not_available_1" : "")}
         onClick={this.handleClick}
         data-date={date}
+        data-pricing={day_price}
         {...handlers}
       >
         {day === 1 && <span className={styles.month}>{monthShort}</span>}
