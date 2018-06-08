@@ -5175,12 +5175,21 @@ var Day = function (_PureComponent) {
     var is_available = false;
     var _props2 = this.props;
 
+    var disable_class = "";
+
+    if (_props2.hasOwnProperty("locale") && _props2.locale.hasOwnProperty("default_disable_class")) {
+      disable_class = _props2.locale.default_disable_class;
+    }
+
     if (_props2.hasOwnProperty("locale") && _props2.locale.hasOwnProperty("pricing") && _props2.locale.pricing.hasOwnProperty(date)) {
 
       var data = _props2.locale.pricing[date];
       if (data.is_available == 1) {
         is_available = true;
         day_price = _props2.locale.currency + data.price;
+      }
+      if (typeof data.disable_class != "undefined") {
+        disable_class = data.disable_class;
       }
     } else {
       if (_props2.hasOwnProperty("locale") && _props2.locale.hasOwnProperty("defaultPricing")) {
@@ -5197,14 +5206,14 @@ var Day = function (_PureComponent) {
       'li',
       _extends({
         style: color ? { color: color } : null,
-        className: __WEBPACK_IMPORTED_MODULE_1_classnames___default()(styles.root, (_classNames = {}, _classNames[styles.today] = isToday, _classNames[styles.highlighted] = isHighlighted, _classNames[styles.selected] = isSelected, _classNames[styles.disabled] = isDisabled, _classNames[styles.enabled] = !isDisabled, _classNames), className) + (!is_available ? " not_available_1" : ""),
+        className: __WEBPACK_IMPORTED_MODULE_1_classnames___default()(styles.root, (_classNames = {}, _classNames[styles.today] = isToday, _classNames[styles.highlighted] = isHighlighted, _classNames[styles.selected] = isSelected, _classNames[styles.disabled] = isDisabled, _classNames[styles.enabled] = !isDisabled, _classNames), className) + (!is_available ? disable_class : ""),
         onClick: this.handleClick,
         'data-date': date,
         'data-pricing': day_price
       }, handlers, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 94
+          lineNumber: 101
         },
         __self: this
       }),
@@ -5212,7 +5221,7 @@ var Day = function (_PureComponent) {
         'span',
         { className: styles.month, __source: {
             fileName: _jsxFileName,
-            lineNumber: 108
+            lineNumber: 115
           },
           __self: this
         },
@@ -5223,7 +5232,7 @@ var Day = function (_PureComponent) {
         {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 109
+            lineNumber: 116
           },
           __self: this
         },
@@ -5233,7 +5242,7 @@ var Day = function (_PureComponent) {
         'span',
         { className: styles.year, __source: {
             fileName: _jsxFileName,
-            lineNumber: 112
+            lineNumber: 119
           },
           __self: this
         },

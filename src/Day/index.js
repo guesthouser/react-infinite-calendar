@@ -66,28 +66,35 @@ export default class Day extends PureComponent {
       color = todayColor;
     }
 
-    var day_price =0;
-    var is_available=false;
-    let _props2 = this.props;
+    var day_price = 0;
+    var is_available = false;
+    var _props2 = this.props;
 
-    if(_props2.hasOwnProperty("locale") && _props2.locale.hasOwnProperty("pricing") && _props2.locale.pricing.hasOwnProperty(date)){
+    var disable_class= "";
+
+    if(_props2.hasOwnProperty("locale") && _props2.locale.hasOwnProperty("default_disable_class")){
+      disable_class= _props2.locale.default_disable_class;
+    }
+
+    if (_props2.hasOwnProperty("locale") && _props2.locale.hasOwnProperty("pricing") && _props2.locale.pricing.hasOwnProperty(date)) {
 
       var data = _props2.locale.pricing[date];
-        if(data.is_available == 1){
-          is_available= true;
-          day_price= _props2.locale.currency + data.price;
-        }
-    }
-    else{
-      if(_props2.hasOwnProperty("locale") && _props2.locale.hasOwnProperty("defaultPricing")){
-        if(_props2.locale.defaultPricing.hasOwnProperty("price")){
+      if (data.is_available == 1) {
+        is_available = true;
+        day_price = _props2.locale.currency + data.price;
+      }
+      if(typeof data.disable_class !="undefined" ){
+        disable_class = data.disable_class;
+      }
+    } else {
+      if (_props2.hasOwnProperty("locale") && _props2.locale.hasOwnProperty("defaultPricing")) {
+        if (_props2.locale.defaultPricing.hasOwnProperty("price")) {
           day_price = _props2.locale.defaultPricing.price;
         }
-        if(_props2.locale.defaultPricing.hasOwnProperty("is_available")){
+        if (_props2.locale.defaultPricing.hasOwnProperty("is_available")) {
           is_available = _props2.locale.defaultPricing.is_available;
         }
       }
-      
     }
 
     return (
@@ -99,7 +106,7 @@ export default class Day extends PureComponent {
           [styles.selected]: isSelected,
           [styles.disabled]: isDisabled,
           [styles.enabled]: !isDisabled,
-         }, className) + ((!is_available) ? " not_available_1" : "")}
+         }, className) + ((!is_available) ? disable_class : "")}
         onClick={this.handleClick}
         data-date={date}
         data-pricing={day_price}
