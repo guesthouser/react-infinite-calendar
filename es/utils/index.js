@@ -128,6 +128,10 @@ export function getWeeksBetweenMonthIncludingPartial(date1, date2) {
   var totalWeeks = 0;
   var iterate = true;
 
+  if (year1 == year2 && month1 == month2) {
+    return 0;
+  }
+
   if (year2 < year1) {
     return 0;
   }
