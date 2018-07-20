@@ -26,7 +26,7 @@ export default class Month extends PureComponent {
     const currentYear = today.getFullYear();
     const year = monthDate.getFullYear();
     const month = monthDate.getMonth();
-    const monthShort = format(monthDate, 'MMM', {locale: locale.locale});
+    let monthShort = format(monthDate, 'MMM', {locale: locale.locale});
     const monthRows = [];
     let day = 0;
     let isDisabled = false;
@@ -37,6 +37,14 @@ export default class Month extends PureComponent {
     const _today = format(today, 'YYYY-MM-DD');
     const _minDate = format(minDate, 'YYYY-MM-DD');
     const _maxDate = format(maxDate, 'YYYY-MM-DD');
+
+    if(locale.hasOwnProperty("month_format")){
+        monthShort = format(monthDate, locale.month_format, {locale: locale.locale});
+    }
+
+    if(locale.hasOwnProperty("year_format")){
+        monthShort = monthShort + " " + format(monthDate, locale.year_format, {locale: locale.locale});
+    }
 
 		// Oh the things we do in the name of performance...
     for (let i = 0, len = rows.length; i < len; i++) {
