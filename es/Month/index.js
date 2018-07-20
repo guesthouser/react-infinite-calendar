@@ -63,6 +63,14 @@ var Month = function (_PureComponent) {
     var _minDate = format(minDate, 'YYYY-MM-DD');
     var _maxDate = format(maxDate, 'YYYY-MM-DD');
 
+    if (locale.hasOwnProperty("month_format")) {
+      monthShort = format(monthDate, locale.month_format, { locale: locale.locale });
+    }
+
+    if (locale.hasOwnProperty("year_format")) {
+      monthShort = monthShort + " " + format(monthDate, locale.year_format, { locale: locale.locale });
+    }
+
     // Oh the things we do in the name of performance...
     for (var i = 0, len = rows.length; i < len; i++) {
       var _classNames;

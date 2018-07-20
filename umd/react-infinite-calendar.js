@@ -5770,6 +5770,14 @@ var Month = function (_PureComponent) {
     var _minDate = __WEBPACK_IMPORTED_MODULE_3_date_fns_format___default()(minDate, 'YYYY-MM-DD');
     var _maxDate = __WEBPACK_IMPORTED_MODULE_3_date_fns_format___default()(maxDate, 'YYYY-MM-DD');
 
+    if (locale.hasOwnProperty("month_format")) {
+      monthShort = __WEBPACK_IMPORTED_MODULE_3_date_fns_format___default()(monthDate, locale.month_format, { locale: locale.locale });
+    }
+
+    if (locale.hasOwnProperty("year_format")) {
+      monthShort = monthShort + " " + __WEBPACK_IMPORTED_MODULE_3_date_fns_format___default()(monthDate, locale.year_format, { locale: locale.locale });
+    }
+
     // Oh the things we do in the name of performance...
     for (var i = 0, len = rows.length; i < len; i++) {
       var _classNames;
@@ -5802,7 +5810,7 @@ var Month = function (_PureComponent) {
         }, passThrough.Day, {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 61
+            lineNumber: 69
           },
           __self: this
         }));
@@ -5819,7 +5827,7 @@ var Month = function (_PureComponent) {
           'aria-label': 'Week ' + (i + 1),
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 81
+            lineNumber: 89
           },
           __self: this
         },
@@ -5849,7 +5857,7 @@ var Month = function (_PureComponent) {
       'div',
       { className: styles.root, style: _extends({}, style, { lineHeight: rowHeight + 'px' }), __source: {
           fileName: _jsxFileName,
-          lineNumber: 102
+          lineNumber: 110
         },
         __self: this
       },
@@ -5857,7 +5865,7 @@ var Month = function (_PureComponent) {
         'div',
         { className: styles.rows, __source: {
             fileName: _jsxFileName,
-            lineNumber: 103
+            lineNumber: 111
           },
           __self: this
         },
@@ -5869,7 +5877,7 @@ var Month = function (_PureComponent) {
             style: { backgroundColor: theme.overlayColor },
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 106
+              lineNumber: 114
             },
             __self: this
           },
@@ -5878,7 +5886,7 @@ var Month = function (_PureComponent) {
             {
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 112
+                lineNumber: 120
               },
               __self: this
             },
