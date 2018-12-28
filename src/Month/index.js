@@ -99,6 +99,17 @@ export default class Month extends PureComponent {
 
     }
 
+
+    monthRows.unshift(
+        <div
+          key={{monthShort}}
+          className= 'Cal__Day__month'
+          style= {{height: rowHeight }}
+        >
+          {monthShort}
+        </div>
+      );
+
     return monthRows;
   }
 

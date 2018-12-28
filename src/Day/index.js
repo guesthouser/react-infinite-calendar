@@ -97,6 +97,7 @@ export default class Day extends PureComponent {
       }
     }
 
+    // shortcircuited showing monthShort name
     return (
       <li
         style={color ? {color} : null}
@@ -112,7 +113,7 @@ export default class Day extends PureComponent {
         data-pricing={day_price}
         {...handlers}
       >
-        {day === 1 && <span className={styles.month}>{monthShort}</span>}
+        {false && day === 1 && <span className={styles.month}>{monthShort}</span>}
         {isToday ? <span>{day}</span> : day}
         {day === 1 &&
           currentYear !== year &&

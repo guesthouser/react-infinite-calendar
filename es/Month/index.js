@@ -117,6 +117,16 @@ var Month = function (_PureComponent) {
       );
     }
 
+    monthRows.unshift(React.createElement(
+      'div',
+      {
+        key: { monthShort: monthShort },
+        className: 'Cal__Day__month',
+        style: { height: rowHeight }
+      },
+      monthShort
+    ));
+
     return monthRows;
   };
 

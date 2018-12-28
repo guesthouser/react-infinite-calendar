@@ -143,6 +143,7 @@ var Day = function (_PureComponent) {
       }
     }
 
+    // shortcircuited showing monthShort name
     return React.createElement(
       'li',
       _extends({
@@ -152,7 +153,7 @@ var Day = function (_PureComponent) {
         'data-date': date,
         'data-pricing': day_price
       }, handlers),
-      day === 1 && React.createElement(
+      false && day === 1 && React.createElement(
         'span',
         { className: styles.month },
         monthShort

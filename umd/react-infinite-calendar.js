@@ -1249,7 +1249,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _class,
     _temp,
-    _jsxFileName = '/var/www/html/testrepo/test/react-infinite-calendar/src/Calendar/index.js';
+    _jsxFileName = '/var/www/html/all/testrepo/test/react-infinite-calendar/src/Calendar/index.js';
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2149,7 +2149,7 @@ module.exports = exports['default'];
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_date_fns_format__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_date_fns_format___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_date_fns_format__);
 /* harmony export (immutable) */ __webpack_exports__["a"] = defaultSelectionRenderer;
-var _jsxFileName = '/var/www/html/testrepo/test/react-infinite-calendar/src/Header/defaultSelectionRenderer.js';
+var _jsxFileName = '/var/www/html/all/testrepo/test/react-infinite-calendar/src/Header/defaultSelectionRenderer.js';
 
 
 
@@ -3355,7 +3355,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _class,
     _temp2,
-    _jsxFileName = '/var/www/html/testrepo/test/react-infinite-calendar/src/index.js';
+    _jsxFileName = '/var/www/html/all/testrepo/test/react-infinite-calendar/src/index.js';
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
@@ -5046,7 +5046,7 @@ if (typeof window !== 'undefined') {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Day; });
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _jsxFileName = '/var/www/html/testrepo/test/react-infinite-calendar/src/Day/index.js';
+var _jsxFileName = '/var/www/html/all/testrepo/test/react-infinite-calendar/src/Day/index.js';
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -5206,6 +5206,7 @@ var Day = function (_PureComponent) {
       }
     }
 
+    // shortcircuited showing monthShort name
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       'li',
       _extends({
@@ -5217,15 +5218,15 @@ var Day = function (_PureComponent) {
       }, handlers, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 101
+          lineNumber: 102
         },
         __self: this
       }),
-      day === 1 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      false && day === 1 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'span',
         { className: styles.month, __source: {
             fileName: _jsxFileName,
-            lineNumber: 115
+            lineNumber: 116
           },
           __self: this
         },
@@ -5236,7 +5237,7 @@ var Day = function (_PureComponent) {
         {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 116
+            lineNumber: 117
           },
           __self: this
         },
@@ -5246,7 +5247,7 @@ var Day = function (_PureComponent) {
         'span',
         { className: styles.year, __source: {
             fileName: _jsxFileName,
-            lineNumber: 119
+            lineNumber: 120
           },
           __self: this
         },
@@ -5273,7 +5274,7 @@ var Day = function (_PureComponent) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_classnames__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Slider; });
-var _jsxFileName = '/var/www/html/testrepo/test/react-infinite-calendar/src/Header/Slider/index.js',
+var _jsxFileName = '/var/www/html/all/testrepo/test/react-infinite-calendar/src/Header/Slider/index.js',
     _this = this;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -5466,7 +5467,7 @@ var Slider = function (_PureComponent) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Header; });
 var _class,
     _temp,
-    _jsxFileName = '/var/www/html/testrepo/test/react-infinite-calendar/src/Header/index.js';
+    _jsxFileName = '/var/www/html/all/testrepo/test/react-infinite-calendar/src/Header/index.js';
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -5570,7 +5571,7 @@ var Header = (_temp = _class = function (_PureComponent) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_date_fns_format___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_date_fns_format__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _jsxFileName = '/var/www/html/testrepo/test/react-infinite-calendar/src/Header/withMultipleDates.js',
+var _jsxFileName = '/var/www/html/all/testrepo/test/react-infinite-calendar/src/Header/withMultipleDates.js',
     _this = this;
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -5638,7 +5639,7 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__defaultSelectionRenderer__ = __webpack_require__(18);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _jsxFileName = '/var/www/html/testrepo/test/react-infinite-calendar/src/Header/withRange.js',
+var _jsxFileName = '/var/www/html/all/testrepo/test/react-infinite-calendar/src/Header/withRange.js',
     _this = this;
 
 
@@ -5705,7 +5706,7 @@ var styles = {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Month; });
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _jsxFileName = '/var/www/html/testrepo/test/react-infinite-calendar/src/Month/index.js';
+var _jsxFileName = '/var/www/html/all/testrepo/test/react-infinite-calendar/src/Month/index.js';
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -5835,6 +5836,21 @@ var Month = function (_PureComponent) {
       );
     }
 
+    monthRows.unshift(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      'div',
+      {
+        key: { monthShort: monthShort },
+        className: 'Cal__Day__month',
+        style: { height: rowHeight },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 104
+        },
+        __self: this
+      },
+      monthShort
+    ));
+
     return monthRows;
   };
 
@@ -5857,7 +5873,7 @@ var Month = function (_PureComponent) {
       'div',
       { className: styles.root, style: _extends({}, style, { lineHeight: rowHeight + 'px' }), __source: {
           fileName: _jsxFileName,
-          lineNumber: 110
+          lineNumber: 121
         },
         __self: this
       },
@@ -5865,7 +5881,7 @@ var Month = function (_PureComponent) {
         'div',
         { className: styles.rows, __source: {
             fileName: _jsxFileName,
-            lineNumber: 111
+            lineNumber: 122
           },
           __self: this
         },
@@ -5877,7 +5893,7 @@ var Month = function (_PureComponent) {
             style: { backgroundColor: theme.overlayColor },
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 114
+              lineNumber: 125
             },
             __self: this
           },
@@ -5886,7 +5902,7 @@ var Month = function (_PureComponent) {
             {
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 120
+                lineNumber: 131
               },
               __self: this
             },
@@ -5925,7 +5941,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var _class,
     _temp2,
-    _jsxFileName = '/var/www/html/testrepo/test/react-infinite-calendar/src/MonthList/index.js';
+    _jsxFileName = '/var/www/html/all/testrepo/test/react-infinite-calendar/src/MonthList/index.js';
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -6208,7 +6224,7 @@ var MonthList = (_temp2 = _class = function (_Component) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return Today; });
 var _class,
     _temp2,
-    _jsxFileName = '/var/www/html/testrepo/test/react-infinite-calendar/src/Today/index.js';
+    _jsxFileName = '/var/www/html/all/testrepo/test/react-infinite-calendar/src/Today/index.js';
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -6327,7 +6343,7 @@ var Today = (_temp2 = _class = function (_PureComponent) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Weekdays; });
 var _class,
     _temp,
-    _jsxFileName = '/var/www/html/testrepo/test/react-infinite-calendar/src/Weekdays/index.js';
+    _jsxFileName = '/var/www/html/all/testrepo/test/react-infinite-calendar/src/Weekdays/index.js';
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -6423,7 +6439,7 @@ var Weekdays = (_temp = _class = function (_PureComponent) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Years; });
 var _class,
     _temp,
-    _jsxFileName = '/var/www/html/testrepo/test/react-infinite-calendar/src/Years/index.js';
+    _jsxFileName = '/var/www/html/all/testrepo/test/react-infinite-calendar/src/Years/index.js';
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
